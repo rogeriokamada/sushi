@@ -1,0 +1,45 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+{% load thumbnail %}
+
+
+<section class="conteudo">
+    <div id="popup" onclick="fecharPopup()">
+    
+        <img id="imagem-popup" src="" alt="Imagem Ampliada" />
+        <span class="fechar" onclick="fecharImagem()">&times;</span>
+    </div>
+    <div class="tabela">
+        {% for produto in produtos %}
+        <div class="bloco" onclick="abrirPopup('{{ produto.imagem.url }}')">
+            <div class="bloco-esq"> 
+                <span class="titulo"><b>{{ produto.nome|capfirst }}</b>  ({{ produto.quantidade }} Unid)</span>
+                <span class="descricao" 
+                {% if produto.descricao|length > 30 %}
+                    style="column-count: 2; column-gap: 0px;"
+                {% endif %}>{{ produto.descricao|linebreaksbr  }}
+                </span>
+
+                <span class="valor"><b>Valor:</b> {{ produto.valor }}</span>
+            </div>
+            <div class="bloco-dir galeria" >
+                {% if produto.promocao == True %}
+                <span class="promocao">PROMOÇÃO</span>
+                {% endif %}
+                {% thumbnail produto.imagem "158x158" crop="center" as im %}
+                
+                <img class="imagem" src="{{ im.url }}"  alt="Imagem" />
+                
+                {% endthumbnail %}
+            </div>
+    
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+
+{% endblock %}
