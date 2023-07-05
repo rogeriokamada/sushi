@@ -1,67 +1,317 @@
 {% load static %}
+{% load thumbnail %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+	
+    <title>Sugoi Delivery</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mobiestilo.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/estilo.css' %}"/>
+    <link rel="shortcut icon" href="/media/static/icon_.ico" type="image/x-icon" />
+    
+    <script src="{% static 'js/code.jquery.js' %}"></script>
+    <script src="{% static 'js/code.jquery.com_ui_1.12.1_jquery-ui.min.js' %}"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;900&family=Signika:wght@400;700&display=swap" rel="stylesheet">
 
-
-    <meta name="viewport" content="width=device-width, initial-scale=0.65">
-    <script>
-function abrirPopup(imagem) {
-  document.getElementById("imagem-popup").src = imagem;
-  document.getElementById("popup").style.display = "flex";
-  document.body.style.overflow = "hidden"; /* Impede o scroll da página quando o popup está aberto */
-}
-
-function fecharPopup() {
-  document.getElementById("popup").style.display = "none";
-  document.body.style.overflow = "auto"; /* Restaura o scroll da página quando o popup é fechado */
-}
-function fecharImagem() {
-  var popup = document.getElementById("popup");
-  popup.style.display = "none";
-}
-    </script>
-</head>
-<body>
-  <div id="container">
-    <div class="menu">
-        <img class="logo" src="/media/static/logo.jpg">
-        <a class="menu-item" href="{% url 'produto:home' %}">Destaque</a>
-        {% for categoria in categorias %}
-            <a class="menu-item" href="{% url 'produto:produto_list' id=categoria.id %}">{{ categoria|capfirst}}</a>
-        {% endfor %}
-    </div>
-  
-    {% block content %}
+    
+    {% block scriptblock %}
     {% endblock %}
+    
+   
+    <script>
+		window.addEventListener('scroll', function() {
+		var menu = document.querySelector('.menu2');
+		var categorias = document.querySelectorAll('[class^="categoria"]');
+		
 
-    <div class="footer">
-      <!-- Conteúdo do footer -->
-      <img src="/media/static/logo.jpg" width="70" height="70">
+		categorias.forEach(function(categoria) {
+		
+		var categoriaTopo = categoria.offsetTop - menu.offsetHeight;
+		
+		if (window.pageYOffset >= categoriaTopo) {
+			var linkAtivo = document.querySelector('.menu2 a[href="#' + categoria.id + '"]');
+			document.querySelectorAll('.menu2 a').forEach(function(link) {
+			link.classList.remove('ativo');
+			});
+			linkAtivo.classList.add('ativo');
+		}
+		});
+		});
 
-      Faça seu pedido pelo nosso whatsapp 16-99294-8539
-      <div class="icons">
-        <a href="https://api.whatsapp.com/send?phone=5516992948539&text=Texto%20aqui"
-    target="_blank"
-    style="position:fixed;bottom:10px;right:20px;">
-    <svg enable-background="new 0 0 512 512" width="40" height="40" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><path d="M256.064,0h-0.128l0,0C114.784,0,0,114.816,0,256c0,56,18.048,107.904,48.736,150.048l-31.904,95.104  l98.4-31.456C155.712,496.512,204,512,256.064,512C397.216,512,512,397.152,512,256S397.216,0,256.064,0z" fill="#4CAF50"/><path d="m405.02 361.5c-6.176 17.44-30.688 31.904-50.24 36.128-13.376 2.848-30.848 5.12-89.664-19.264-75.232-31.168-123.68-107.62-127.46-112.58-3.616-4.96-30.4-40.48-30.4-77.216s18.656-54.624 26.176-62.304c6.176-6.304 16.384-9.184 26.176-9.184 3.168 0 6.016 0.16 8.576 0.288 7.52 0.32 11.296 0.768 16.256 12.64 6.176 14.88 21.216 51.616 23.008 55.392 1.824 3.776 3.648 8.896 1.088 13.856-2.4 5.12-4.512 7.392-8.288 11.744s-7.36 7.68-11.136 12.352c-3.456 4.064-7.36 8.416-3.008 15.936 4.352 7.36 19.392 31.904 41.536 51.616 28.576 25.44 51.744 33.568 60.032 37.024 6.176 2.56 13.536 1.952 18.048-2.848 5.728-6.176 12.8-16.416 20-26.496 5.12-7.232 11.584-8.128 18.368-5.568 6.912 2.4 43.488 20.48 51.008 24.224 7.52 3.776 12.48 5.568 14.304 8.736 1.792 3.168 1.792 18.048-4.384 35.52z" fill="#FAFAFA"/></svg>
-</a>
-       
-      </div>
-      
-      
-    </div>
-</div>
+		function abrirPopup(imagem,description) {
+		const popupDescription = document.getElementById('popupDescription');
+		document.getElementById("imagem-popup").src = imagem;
+		document.getElementById("popup").style.display = "flex";
+		document.body.style.overflow = "hidden"; /* Impede o scroll da página quando o popup está aberto */
+		popupDescription.innerHTML = description;
+		}
 
+		function fecharPopup() {
+		document.getElementById("popup").style.display = "none";
+		document.body.style.overflow = "auto"; /* Restaura o scroll da página quando o popup é fechado */
+		}
+		function fecharImagem() {
+		var popup = document.getElementById("popup");
+		popup.style.display = "none";
+		}
+		
+		function AbreCarrinhoMobile(){
+		var carrinhoMDiv = document.getElementById("carrinhomobile");
+		carrinhoMDiv.style.display = "block";
+		}
+	
+		function abrirCarrinho() {
+		var carrinhoDiv = document.getElementById("carrinhocompras");
+		carrinhoDiv.style.display = "flex";
+	
+		var conteudoDiv = document.querySelector(".conteudo");
+		conteudoDiv.style.display = "none";
+	
+		var menuDiv = document.querySelector (".menu");
+		menuDiv.style.display = "none";
+		
+		}
+		function fechaCarrinho() {
+		var carrinhoDiv = document.getElementById("carrinhocompras");
+		carrinhoDiv.style.display = "none";
+		var carrinhoMDiv = document.getElementById("carrinhomobile");
+		carrinhoMDiv.style.display = "none";
+		//var conteudoDiv = document.querySelector(".mobile");
+		//conteudoDiv.style.display = "block";
+		}
+
+		function tamanhoCarrinho() {
+		
+   		var div2 = document.getElementById('carrinhocompras');
+		var windowHeight = window.innerHeight - 183;
+		var largura = div2.clientHeight;
+		
+		div2.style.height = windowHeight  + 'px';
+		div2.style.maxHeight  = largura + "px";
+		}
+
+		//window.addEventListener('resize', function() {
+		//tamanhoCarrinho(); // Atualiza o tamanho quando a janela for redimensionada
+		//});
+
+	</script>
+  
+</head>
+<body  onload="tamanhoCarrinho()">
+	<header class="menu2">
+		<nav>	
+			<ul>	
+				
+					{% for categoria in categorias %}
+					<li><a class="menu-item" href="#{{ categoria.slug }}">{{ categoria|capfirst }}</a></li>
+					{% endfor %}
+				<li class="menu-item carrinho_menu" onclick="abrirCarrinho()">CARRINHO<img src="/media/static/carrinho.png"></li>
+			</ul>
+		</nav>
+  	</header>
+
+  	<main id="div1">
+		<div class="divlogo">
+		<img class="logo" src="/media/static/logo.jpg">
+		</div>
+		<div id="popup"  onclick="fecharPopup()">
+			<div class="box_popup" style="display: no;">
+				<span class="fechar" >&times;</span>
+				<img id="imagem-popup" src="" alt="Imagem Ampliada" />
+				<span id="popupDescription"></span>
+			</div>
+		</div>
+
+		{% for categoria in categorias %}
+
+		<section id="{{categoria.slug}}" class="categoria-{{categoria.slug}}">
+
+			
+			<span class="titulocategoria">{{categoria}}</span>
+			
+			
+			<!-- Conteúdo da Categoria 1 -->
+			<div class="tabela">
+				<!-- Conteúdo da Destaque -->
+				{% if categoria.nome == 'Destaque' %}
+				
+				{% for produto in destaque %}		
+				
+				<div class="bloco">
+					<div class="bloco-esq"> 
+						<span class="titulo"><b>{{ produto.nome|capfirst }}</b>  ({{ produto.quantidade }} Unid)</span>
+						<span class="descricao"
+						{% if produto.descricao|length > 30 %}
+							style="column-count: 2; column-gap: 0px;"
+						{% endif %}>{{ produto.descricao|linebreaksbr  }}
+						</span>
+						
+						<form method="POST" action="{% url 'produto:home' %}">
+							{% csrf_token %}
+							<span class="valor"><b>R$ </b> {{ produto.valor }}</span>
+							<input type="hidden" name="categoria_slug" value="{{ categoria.slug }}">
+							<input type="hidden" name="produto_id" value="{{ produto.id }}">
+							<input type="number" class="quantidade" name="quantidade" value="1" min="1">  
+							<button class="imgcarrinho" type="submit"><span>Adicionar</span><img src="/media/static/carrinho.png"></button>                    
+						</form>
+					</div>
+					<div class="bloco-dir galeria"  onclick="abrirPopup('{{ produto.imagem.url }}', '{{ produto.descricao|linebreaksbr }}')">
+						{% if produto.promocao == True %}
+						<span class="promocao">PROMOÇÃO</span>
+						{% endif %}
+						{% thumbnail produto.imagem "158x158" crop="center" as im %}
+						<img class="imagem" src="{{ im.url }}"  alt="Imagem" /> 
+						{% endthumbnail %}
+					</div>
+				</div>
+				
+				{% endfor %}
+
+				{% endif %}
+				
+
+				<!-- Conteúdo da Produtos -->
+
+				{% for produto in produtos %}		
+				{% if produto.categoria.id == categoria.id %}
+				<div class="bloco">
+					<div class="bloco-esq"> 
+						<span class="titulo"><b>{{ produto.nome|capfirst }}</b>  ({{ produto.quantidade }} Unid)</span>
+						<span class="descricao"
+						{% if produto.descricao|length > 30 %}
+							style="column-count: 2; column-gap: 0px;"
+						{% endif %}>{{ produto.descricao|linebreaksbr  }}
+						</span>
+						
+						<form method="POST" action="{% url 'produto:home' %}">
+							{% csrf_token %}
+							<span class="valor"><b>R$ </b> {{ produto.valor }}</span>
+							<input type="hidden" name="categoria_slug" value="{{ categoria.slug }}">
+							<input type="hidden" name="produto_id" value="{{ produto.id }}">
+							<input type="number" class="quantidade" name="quantidade" value="1" min="1">  
+							<button class="imgcarrinho" type="submit"><span>Adicionar</span><img src="/media/static/carrinho.png"></button>                    
+						</form>
+					</div>
+					<div class="bloco-dir galeria"  onclick="abrirPopup('{{ produto.imagem.url }}', '{{ produto.descricao|linebreaksbr }}')">
+						{% if produto.promocao == True %}
+						<span class="promocao">PROMOÇÃO</span>
+						{% endif %}
+						{% thumbnail produto.imagem "158x158" crop="center" as im %}
+						<img class="imagem" src="{{ im.url }}"  alt="Imagem" /> 
+						{% endthumbnail %}
+					</div>
+				</div>
+				{% endif%}
+				{% endfor %}
+
+
+			</div>
+		</section>
+		{%endfor%}
+  	</main>
+	
+	<div id="carrinhocompras">
+		<!-- Adicione o elemento para exibir o total do carrinho -->
+		{% if contador_itens > 0 %}
+		<p class="total"><b>Total do Carrinho</b><span id="fecharcarrinho" onclick="fechaCarrinho()">x</span>
+		{% else %}
+		<p class="total"><b>Carrinho vazio</b><span id="fecharcarrinho" onclick="fechaCarrinho()">x</span>
+		{% endif %}
+		</p>
+		{% for item in itens_carrinho %}
+		<div class="boxcarrinho">
+			<p><b>{{ item.quantidade }}x {{ item.produto.nome }}</b></p>
+			<a href="{% url 'produto:remover_item_carrinho' item.id %}"><img src="/media/static/lixeira.png"></a>
+			<div class="quantidade-form">
+				<form action="{% url 'produto:home' %}" name="form_quantidade" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="carrinho_id" value="{{ item.id }}">
+					<button type="submit" name="increment" value="false" class="quantidade-btn">
+					<img src="/media/static/remove.png" alt="Menos">
+					</button>
+					<span class="quantidade-itens">{{ item.quantidade }}</span> 
+					<button type="submit" name="increment" value="true" class="quantidade-btn">
+						<img src="/media/static/add.png" alt="Mais">
+					</button>
+				</form>
+				<span>
+					<p class="font12 textright">Valor: {{ item.produto.valor }}</p>
+					<p class="font12 textright">Subtotal: {{ item.subtotal }}</p>
+				</span>
+				
+			</div>
+		</div>
+		{% endfor %}
+		{% if contador_itens > 0 %}
+		
+		<p class="total"><b>TOTAL {{ total }} </b></p>
+		<p class="btwhatsapp"><a  href="{% url 'produto:enviar_mensagem_whatsapp' tipo='desk' %}">ENVIAR PEDIDO</a></p>
+		{% endif %}
+	</div>
+
+	<div id="container">
+		<div class="footer">
+			<span class="desktop">
+				<!-- Conteúdo do footer Desktop-->
+				<img src="/media/static/logo.jpg" width="60" height="60">
+				<p>Faça seu pedido pelo whatsapp 16-99294-8539</p>
+				<div class="icons">
+					<a href="https://api.whatsapp.com/send?phone=5516992948539&text=Texto%20aqui"
+					target="_blank"
+					style="position:fixed;bottom:10px;right:20px;">
+					<svg enable-background="new 0 0 512 512" width="40" height="40" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><path d="M256.064,0h-0.128l0,0C114.784,0,0,114.816,0,256c0,56,18.048,107.904,48.736,150.048l-31.904,95.104  l98.4-31.456C155.712,496.512,204,512,256.064,512C397.216,512,512,397.152,512,256S397.216,0,256.064,0z" fill="#4CAF50"/><path d="m405.02 361.5c-6.176 17.44-30.688 31.904-50.24 36.128-13.376 2.848-30.848 5.12-89.664-19.264-75.232-31.168-123.68-107.62-127.46-112.58-3.616-4.96-30.4-40.48-30.4-77.216s18.656-54.624 26.176-62.304c6.176-6.304 16.384-9.184 26.176-9.184 3.168 0 6.016 0.16 8.576 0.288 7.52 0.32 11.296 0.768 16.256 12.64 6.176 14.88 21.216 51.616 23.008 55.392 1.824 3.776 3.648 8.896 1.088 13.856-2.4 5.12-4.512 7.392-8.288 11.744s-7.36 7.68-11.136 12.352c-3.456 4.064-7.36 8.416-3.008 15.936 4.352 7.36 19.392 31.904 41.536 51.616 28.576 25.44 51.744 33.568 60.032 37.024 6.176 2.56 13.536 1.952 18.048-2.848 5.728-6.176 12.8-16.416 20-26.496 5.12-7.232 11.584-8.128 18.368-5.568 6.912 2.4 43.488 20.48 51.008 24.224 7.52 3.776 12.48 5.568 14.304 8.736 1.792 3.168 1.792 18.048-4.384 35.52z" fill="#FAFAFA"/></svg>
+					</a>
+				</div>
+			</span>
+
+			<!-- Conteúdo do footer Mobile -->  
+			{% if contador_itens > 0 %}
+			<div class="mobile" onclick="AbreCarrinhoMobile()">
+				{{contador_itens}} itens no carrinho <span>R$ {{total}}</span>
+			</div>
+			{% endif %}
+		</div>
+
+
+		<div id="carrinhomobile" {% if item_removido %}class="show-mobile"{% endif %} >	
+			<!-- Adicione o elemento para exibir o total do carrinho -->
+			<p class="total total_carrinhomobile"><b>Detalhes do pedido</b><span id="fecharcarrinho" onclick="fechaCarrinho()">X</span></p>
+			<span>
+				{% for item in itens_carrinho %}
+				<div class="boxcarrinho">
+					<p><b>{{ item.quantidade }}x {{ item.produto.nome }}</b></p>
+					
+					<a href="{% url 'produto:remover_item_carrinho' item.id %}" onclick="AbreCarrinhoMobile()"><img src="/media/static/lixeira.png"></a>
+					<div class="quantidade-form">
+						<form action="{% url 'produto:home' %}" method="POST">
+							{% csrf_token %}
+							<input type="hidden" name="carrinho_id" value="{{ item.id }}">
+							<button type="submit" name="increment" value="false" class="quantidade-btn">
+								<img src="/media/static/remove.png" alt="Menos">
+							</button>
+							<span class="quantidade-itens">{{ item.quantidade }}</span> 
+							<button type="submit" name="increment" value="true" class="quantidade-btn">
+								<img src="/media/static/add.png" alt="Mais">
+							</button>
+						</form>
+						<span >
+							<p class="font12 textright">Valor: {{ item.produto.valor }}</p>
+							<p class="font12 textright">Subtotal: {{ item.subtotal }}</p>
+						</span>
+					</div>
+				</div>
+				{% endfor %}
+			</span>
+			<p class="total"><b>TOTAL {{ total }} </b></p>
+			<p class="btwhatsapp"><a  href="{% url 'produto:enviar_mensagem_whatsapp' tipo='mob' %}">ENVIAR PEDIDO</a></p>
+		</div>
+	</div>
 </body>
 </html>

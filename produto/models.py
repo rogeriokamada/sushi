@@ -1,17 +1,21 @@
 from django.db import models
 from sorl.thumbnail import ImageField
+from django.template.defaultfilters import slugify  
+from django.urls import reverse
 
 # Create your models here.
 class Categoria(models.Model):
     nome = models.CharField(max_length=100)
     ativo = models.BooleanField(choices=[(True, 'Sim'), (False, 'Não')], default=True)
+    slug = models.SlugField(null=False)
+    order = models.IntegerField(default=0, blank=False, null=False)
 
     class Meta:
-        ordering = ['nome']
-
-    def __str__(self) -> str:
+        ordering = ['order']
+        
+    def __str__(self):
         return self.nome
-    
+
 class Produto(models.Model):
     nome = models.CharField(max_length=100)
     quantidade = models.IntegerField()
@@ -29,4 +33,14 @@ class Produto(models.Model):
 
     def __str__(self) -> str:
         return self.nome
+
+class Carrinho(models.Model):
+    produtos = models.ManyToManyField(Produto, through='ItemCarrinho')
+
+class ItemCarrinho(models.Model):
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    carrinho = models.ForeignKey(Carrinho, on_delete=models.CASCADE)
+    quantidade = models.PositiveIntegerField(default=1)
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    
 

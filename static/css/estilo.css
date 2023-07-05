@@ -1,19 +1,204 @@
 
+@media screen and (min-width: 992px ) {
 body {
   font-family: 'Roboto', sans-serif ;
   color: #747474;
-  display: flex;
   margin: 0 auto;
-  width: 1020px;
+ 
+
+}
+.font12 {
+  font-size: 12px;
+}
+  
+.textright {
+  text-align: right;
+}
+.carrinho_menu {
+ display: block;
+  background: white;
+  cursor: pointer;
+  width: 140px;
+
+}
+.carrinho_menu img {
+  height: 15px;
+}
+
+#carrinhocompras {
+  overflow-y:auto;
+ display: flex;
+ flex-direction: column;
+  margin-top: 10px;
+ width: 257px;
+
+ position: fixed;
+ right: 0;
+ top: 30px;
+ z-index: 99999;
+ background: white;
+ overflow-x:hidden;
+}
+.btwhatsapp {
+  text-align: center;
+  
+  background: forestgreen;
+  padding: 0px;
+
+  
+}
+.btwhatsapp a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  background-image: url('../../media/static/WhatsApp-icone.png');
+  background-size:cover;
+  background-position: right 30px center;
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  text-decoration: none;
+  padding: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#fecharcarrinho {
+
+  display: flex;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #000;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.boxcarrinho {
+  display: flex;
+  width: 247px;
+  position: relative;
+  border: 1px solid black;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 5px;
+  background: #f3f3f3;  
+  direction: initial;
+  
   
 }
 
-@media (max-width: 800px) {
-  body {
-   
-    width: 100%;
-  }
+.total{
+  border: 1px solid black;
+  padding: 10px 0;
+  width: 247px;
+  margin: 0;
+  margin-left: 6px;
+  text-align: center;
+  position: sticky;
+  bottom: 0;
+  right: 0;
+  background: white;
 }
+.boxcarrinho a{
+  text-decoration: none;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.boxcarrinho p {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+}
+.boxcarrinho a img {
+
+  width: 15px;
+  margin: 8px 15px 0 0;
+}
+.imgcarrinhobt {
+  display: none;
+
+}
+.imgcarrinho{
+  display: flex;
+}
+.imgcarrinho span{
+  display:block;
+}
+.imgcarrinho, .imgcarrinhobt{
+  
+  align-items: center;
+  justify-content: center;
+  background-color: #d4d4d4;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Roboto', sans-serif ;
+}
+.imgcarrinho:hover ,.imgcarrinhobt:hover{
+  background-color: #6ae564;
+}
+.imgcarrinho img, .imgcarrinhobt img{
+  width: 15px;
+  margin-left: 5px;
+
+}
+.quantidade-btn {
+  border: none; 
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+.quantidade-btn img{
+  width: 15px;
+  cursor: pointer;
+}
+.quantidade{
+
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  text-align: center;
+}
+
+.quantidade::-webkit-inner-spin-button,
+.quantidade::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantidade:focus {
+  border-color: #4d90fe;
+}
+
+.quantidade-form{
+ 
+ display: flex;
+ justify-content: space-between;
+ padding-top: 5px;
+ flex-wrap: nowrap;
+ 
+
+ 
+}
+
+.quantidade-form form .quantidade-itens {
+  margin: 0;
+  padding: 0 5px;
+}
+.quantidade-form form button {
+  height: 15px;
+  margin-top: 2px;
+}
+
 
 .menu {
   display: flex;
@@ -21,14 +206,24 @@ body {
   background-color: #fff;
   padding: 10px;
   width: 150px;
-  margin-right: 10px;
   padding-bottom: 70px;
   
 }
-
+.divlogo{
+  background-image: url('../../media/static/fundo2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 60px;
+}
 .logo {
   border-radius:50% ;
-  margin-bottom: 20px;
+
+  width: 150px;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 40px;
+ 
 }
 .menu-item {
   color: #747474;
@@ -38,7 +233,7 @@ body {
   font-weight: 900;
   text-align: center;
   border: #747474 1px solid;
-  margin: 2px 0;
+
 }
 
 /* Estilos adicionais para tornar o menu mais atraente */
@@ -51,46 +246,56 @@ body {
 #container{
     
     display: flex;
-    width: 100%;
+    width: auto;
+    margin: 0 auto;
     
     
   }
 .conteudo{
- 
+  width: auto;
   padding-bottom: 70px;
 }
 
 
 .footer {
   width: 100%;
-  height: 70px;
+  height: 60px;
   background-color:black;
   position: fixed;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 20px;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  
   z-index: 9999;
 }
 
+.footer .desktop {
+  display: block;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.mobile {
+  display: none;
+}
 
 .tabela {
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
-  
+  justify-content: flex-start;
   margin: 0 auto;
-  min-height: 100%;
+  width: 80%;
+  
 }
 
 .bloco {
   width: 400px;
+  max-width: 400px;
   height: 160px;
   background-color: #f3f3f3;
-  margin: 10px;
+  margin: 5px;
   box-sizing: border-box;
   display: flex;
   border: 1px rgba(0, 0, 0, 0.05) solid;
@@ -107,7 +312,10 @@ body {
   flex-direction: column;
   padding: 10px;
   width: 250px;
+}
 
+.bloco-esq form {
+  display: flex;
 }
 
 .bloco-esq .titulo b {
@@ -127,19 +335,24 @@ body {
 }
 .bloco-esq .valor {
 
-  font-size: 16px;
+  font-size: 13px;
+  margin-top: 8px;
+  margin-right: 5px;
 }
 
 .bloco-dir {
   display: flex;
   align-self: flex-end;
   position: relative;
+  width: auto;
+  height: auto;
 
 }
 
 .bloco-dir .imagem{
   border-radius: 20px;
   z-index: 2;
+  position: relative;
 }
 
 .promocao{
@@ -157,28 +370,51 @@ padding-top: 3px;
 }
 
 #popup {
-  display: none ; 
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-  z-index: 9999;
-  text-align: center;
+  
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
   
 }
 
-#popup img {
+.box_popup {
+  position: relative;
   max-width: 90%;
   max-height: 90%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+ 
 }
+
+.fechar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #000;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#imagem-popup {
+  max-width: 200px;
+  
+}
+
+#popupDescription {
+  margin-top: 10px;
+  color: #000;
+  font-size: 18px;
+  display: flex;
+  
+}
+
 
 .galeria {
   display: flex;
@@ -186,6 +422,7 @@ padding-top: 3px;
   justify-content: center;
   position: relative; /* Adiciona uma posição relativa para que o popup seja posicionado corretamente */
   z-index: 4; /* Coloca a galeria em um nível acima do popup */
+  align-items: flex-end;
 }
 
 .galeria .imagem {
@@ -196,10 +433,121 @@ padding-top: 3px;
 
 .fechar {
   position: absolute;
-  top: 10px;
+  top: 0px;
   right: 10px;
-  color: #fff;
+  color: #000;
   font-size: 30px;
   cursor: pointer;
   
 }
+
+#cart-dialog {
+  display: none;
+  width: 800px;
+  height: 800px;
+  background-color: rgba(0, 0, 0, 0.5); /* Define a cor de fundo com transparência */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  padding: 20px;
+  color: #fff;
+}
+
+#cart-dialog table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#cart-dialog th,
+#cart-dialog td {
+  padding: 10px;
+  border: 1px solid #fff;
+}
+
+#cart-dialog th {
+  background-color: #333;
+}
+
+main{
+  width: 100%;
+  margin-bottom: 100px;
+
+}
+section {
+  width: 100%;
+}
+
+.titulocategoria{
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  background-color: #c8c8c8;
+  
+  display: flex;
+}
+
+.menu2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-color: black;
+  z-index: 999;
+}
+
+.menu2 nav{
+  height: 100%;
+}
+
+.menu2 ul {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  list-style: none;
+  height: 100%;
+  align-items: center;
+}
+.menu2 ul li a {
+  white-space: nowrap;
+}
+
+.menu2 .ativo {
+  font-weight: bold; /* ou qualquer outra forma de destaque desejada */
+  background-color: #c8c8c8;
+}
+.categoria2 {
+  height: 800px; /* Apenas para exemplo, ajuste conforme necessário */
+  margin: 20px 0;
+}
+
+
+#carrinhocompras::-webkit-scrollbar {
+  width: 10px;
+}
+
+#carrinhocompras::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+#carrinhocompras::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+#carrinhocompras::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+#carrinhocompras {
+  overflow-y: scroll; /* Habilita o scroll vertical */
+  direction: rtl; /* Define a direção da rolagem como da direita para a esquerda */
+}
+
+
+
+:target {
+  scroll-margin-top: 40px; /* Ajuste esse valor de acordo com a altura do seu menu fixo */
+}
+}
+

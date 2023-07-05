@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <!-- Inclua o conteúdo do carrinho de compras aqui -->
+    <!-- Por exemplo, uma tabela com os itens -->
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Itere sobre os itens do carrinho e exiba-os aqui -->
+            {% for item in itens_carrinho %}
+            <tr>
+                <td>{{ item.produto.nome }}</td>
+                <td>{{ item.quantidade }}</td>
+                <td>{{ item.produto.preco }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{%endblock%}

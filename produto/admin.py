@@ -1,12 +1,14 @@
 from django.contrib import admin
-from adminsortable2.admin import SortableAdminMixin
+from adminsortable2.admin import SortableAdminMixin,SortableInlineAdminMixin
+
 from .models import Categoria, Produto
 
 # Register your models here.
 
 @admin.register(Categoria)
 class CategoriaAdmin(SortableAdminMixin, admin.ModelAdmin):
-    pass
+    list_display = ("nome", "ativo",)
+    prepopulated_fields = {"slug": ("nome",)}
 
 @admin.register(Produto)
 class ProdutoAdmin(SortableAdminMixin, admin.ModelAdmin):

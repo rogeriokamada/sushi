@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <!-- Inclua o conteúdo do carrinho de compras aqui -->
+    <!-- Por exemplo, uma tabela com os itens -->
+    <div class="tabela">
+            <!-- Itere sobre os itens do carrinho e exiba-os aqui -->
+            {% for item in itens_carrinho %}
+            <div class="bloco">
+                {{ item.produto.nome }}
+                {{ item.quantidade }}
+                {{ item.produto.preco }}
+                <a href="{% url 'produto:remover_item_carrinho' item.id %}">Remover</a>
+            </div>
+            {% endfor %}
+    </div>
+
+
+{%endblock%}

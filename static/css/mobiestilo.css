@@ -1,0 +1,560 @@
+
+body {
+
+  font-family: 'Roboto', sans-serif ;
+  color: #747474;
+  display: flex;
+  margin: 0 auto !important ;
+}
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;  
+}
+@media (max-width: 600px) {
+  #carrinhomobile.show-mobile {
+    display: block;
+  }
+}
+
+#carrinhocompras {
+
+  width: 100% ;
+  display: none;
+  flex-direction: column;
+  margin-top: 0px;
+  margin-right: 0px;
+  
+  z-index: 99999;
+}
+
+.mobile {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+}
+.mobile span {
+  padding: 5px 10px;
+  margin-left: 5px;
+  background: white;
+  border-radius: 10px;
+}
+
+.total_carrinhomobile{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  background-color: white;
+  
+}
+.btwhatsapp {
+  text-align: center;
+  
+  background: forestgreen;
+  padding: 0px;
+
+  
+}
+.btwhatsapp a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  background-image: url('../../media/static/WhatsApp-icone.png');
+  background-size:cover;
+  background-position: right 90px center;
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  text-decoration: none;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.carrinho_menu {
+  display: none;
+}
+
+
+#carrinhomobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white; /* Defina a cor de fundo desejada */
+    z-index: 1000; /* Defina um valor maior que a div .overlay para que ela fique acima */
+    display: none; /* Inicialmente oculta a div */
+    overflow-y: auto;
+    margin-top: 40px;
+}
+
+#carrinhomobile span {
+  top: 8px;
+}
+
+#fecharcarrinho {
+  display: flex;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  color: #000;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 99;
+}
+  
+
+
+.font12 {
+  font-size: 14px;
+}
+  
+.textright {
+  text-align: right;
+}
+
+.total{
+  border: 1px solid black;
+  padding: 10px 0;
+  margin: 0;
+  text-align: center;
+}
+.boxcarrinho{
+    position: relative;
+    width: 100% ;
+    padding: 15px;
+    border: 1px solid black;
+    
+    background: #f3f3f3;  
+  }
+.boxcarrinho a{
+  text-decoration: none;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.boxcarrinho p {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  
+}
+
+.boxcarrinho a img {
+
+    width: 30px;
+    margin: 5px 30px 0 0;
+  }
+.imgcarrinhobt {
+  display: block;
+}
+.imgcarrinho span{
+    display: none;
+}
+
+.imgcarrinho, .imgcarrinhobt{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d4d4d4;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Roboto', sans-serif ;
+}
+.imgcarrinho:hover ,.imgcarrinhobt:hover{
+  background-color: #6ae564;
+}
+.imgcarrinho img, .imgcarrinhobt img{
+  width: 15px;
+  margin-left: 5px;
+
+}
+.quantidade-btn {
+  border: none; 
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+.quantidade-btn img{
+  width:30px;
+  cursor: pointer;
+}
+.quantidade{
+
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  text-align: center;
+}
+
+.quantidade::-webkit-inner-spin-button,
+.quantidade::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantidade:focus {
+  border-color: #4d90fe;
+}
+
+.quantidade-form{
+ 
+ display: flex;
+ justify-content: space-between;
+ padding-top: 5px;
+ flex-wrap: nowrap;
+
+}
+
+.quantidade-form form {
+    display: flex;
+    text-align: center;
+    width: 50px;
+   
+    justify-content: space-between;
+}
+
+
+.quantidade-itens{
+    margin: 0;
+    padding: 10px;
+    font-size: 18px;
+}
+
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 10px 0;
+  width: 30%;
+
+  padding-bottom: 70px;
+  
+}
+.divlogo{
+  background-image: url('../../media/static/fundo2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 10px;
+  margin-top: 40px;
+}
+.logo {
+  border-radius:50% ;
+  margin-top: 20px;
+  width: 100px;
+}
+.menu-item {
+    
+    color: #747474;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
+    border: #747474 1px solid;
+    width: auto;
+    
+    
+}
+
+/* Estilos adicionais para tornar o menu mais atraente */
+.menu-item:hover {
+  background-color: #c5c1c1;
+}
+
+
+
+#container{
+    
+    display: flex;
+    width: auto;
+    
+    
+  }
+.conteudo{
+ width: 70%;
+ 
+  padding-bottom: 70px;
+}
+
+
+
+.footer {
+    width: 100%;
+    height: 55px;
+    background-color:black;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  .footer .desktop {
+    display: none;
+  }
+
+.tabela {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  
+}
+
+.bloco {
+  width: 100%;
+  max-width: 400px;
+  background-color: #f3f3f3;
+  margin: 5px;
+  box-sizing: border-box;
+  display: flex;
+  border: 1px rgba(0, 0, 0, 0.05) solid;
+  justify-content:flex-start;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+}
+.bloco:hover {
+  background-color: #e1e1e1;
+  border: 1px solid rgb(43, 43, 43);
+}
+.bloco-esq {
+  display: flex;
+  flex-direction: column;
+  padding: 7px;
+  flex-grow: 1;
+}
+
+.bloco-esq form {
+  display: flex;
+ 
+}
+
+.bloco-esq .titulo  {
+  width: 100%;
+  height: 20px;
+}
+.bloco-esq .titulo b {
+   
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+}
+
+.bloco-esq .descricao {
+  font-weight: 300;
+  font-size: 14px;
+  min-height: 50px;
+}
+.bloco-esq .valor {
+
+  font-size: 13px;
+  margin-top: 8px;
+  margin-right: 15px;
+}
+
+.bloco-dir {
+  display: flex;
+    width: 120px;
+    height: 120px;
+    position: relative;
+
+
+}
+
+.bloco-dir .imagem{
+  border-radius: 20px;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.promocao{
+  width: 100%;
+  height: 25px;
+  background-color: rgb(205, 46, 46);
+  border-radius: 20px 20px 0 0px ;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+text-align: center;
+color: #fff;
+padding-top: 3px;
+}
+
+
+#popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    
+  }
+  
+  .box_popup {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    background-color: #fff;
+    padding: 20px;
+   
+  }
+  
+  .fechar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #000;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  #imagem-popup {
+    max-width: 200px;
+    
+  }
+  
+  #popupDescription {
+    margin-top: 10px;
+    color: #000;
+    font-size: 18px;
+    display: flex;
+    
+  }
+  
+
+
+.galeria {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+  z-index: 4; /* Coloca a galeria em um nível acima do popup */
+}
+
+.galeria .imagem {
+  max-width: 120px;
+  max-height: 120px;
+  cursor: pointer;
+}
+
+.fechar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+  
+}
+
+#cart-dialog {
+  display: none;
+  width: 800px;
+  height: 800px;
+  background-color: rgba(0, 0, 0, 0.5); /* Define a cor de fundo com transparência */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  padding: 20px;
+  color: #fff;
+}
+
+#cart-dialog table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#cart-dialog th,
+#cart-dialog td {
+  padding: 10px;
+  border: 1px solid #fff;
+}
+
+#cart-dialog th {
+  background-color: #333;
+}
+
+main{
+    width: 100%;
+    margin-bottom: 100px;
+ 
+  }
+  .titulocategoria{
+    width: 100%;
+    padding: 10px 0;
+    background-color: #c8c8c8;
+    display: flex;
+    justify-content: center;
+  }
+
+
+  
+nav {
+    overflow-x: auto;
+}
+
+.menu2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: black;
+    
+    z-index: 999;
+  }
+  
+ 
+  .menu2 ul {
+    display: flex;
+    
+    text-decoration: none;
+    list-style: none;
+    align-items: center;
+    height: 40px;
+    overflow-x: auto; /* Adicionado */
+  }
+ 
+  .menu2 ul li a {
+    white-space: nowrap;
+  }
+
+
+ 
+  .menu2 .ativo {
+    font-weight: bold; /* ou qualquer outra forma de destaque desejada */
+    background-color: #c8c8c8;
+  }
+
+  :target {
+    scroll-margin-top: 40px; /* Ajuste esse valor de acordo com a altura do seu menu fixo */
+  }

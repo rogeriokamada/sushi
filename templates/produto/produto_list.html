@@ -1,9 +1,7 @@
 
 {% extends 'base.html' %}
 {% block content %}
-
 {% load thumbnail %}
-
 
 <section class="conteudo">
     <div id="popup" onclick="fecharPopup()">
@@ -11,9 +9,10 @@
         <img id="imagem-popup" src="" alt="Imagem Ampliada" />
         <span class="fechar" onclick="fecharImagem()">&times;</span>
     </div>
+
     <div class="tabela">
         {% for produto in produtos %}
-        <div class="bloco" onclick="abrirPopup('{{ produto.imagem.url }}')">
+        <div class="bloco">
             <div class="bloco-esq"> 
                 <span class="titulo"><b>{{ produto.nome|capfirst }}</b>  ({{ produto.quantidade }} Unid)</span>
                 <span class="descricao" 
@@ -21,10 +20,16 @@
                     style="column-count: 2; column-gap: 0px;"
                 {% endif %}>{{ produto.descricao|linebreaksbr  }}
                 </span>
+                
+                <form method="POST" action="{% url 'produto:adicionar_item_carrinho' produto.id %}">
+                    {% csrf_token %}
+                    <span class="valor"><b>Valor:</b> {{ produto.valor }}</span>
+                    <input type="number" class="quantidade" name="quantidade" value="1" min="1">  
+                    <button class="imgcarrinho" type="submit"><span>Adicionar</span><img src="/media/static/carrinho.png"></button>                    
+                </form>
 
-                <span class="valor"><b>Valor:</b> {{ produto.valor }}</span>
             </div>
-            <div class="bloco-dir galeria" >
+            <div class="bloco-dir galeria"  onclick="abrirPopup('{{ produto.imagem.url }}')">
                 {% if produto.promocao == True %}
                 <span class="promocao">PROMOÇÃO</span>
                 {% endif %}
@@ -34,12 +39,76 @@
                 
                 {% endthumbnail %}
             </div>
-    
+           
         </div>
         {% endfor %}
+        
     </div>
+     
+    <button class="imgcarrinhobt" type="button" onclick="abrirCarrinho()">Carrinho de Compras<img src="/media/static/carrinho.png"></button>
 
+    
+
+    
 </section>
 
 
+
+
+
+    
+<div id="carrinhocompras">
+    <!-- Adicione o elemento para exibir o total do carrinho -->
+    <p class="total"><b>Total do Carrinho</b><span id="fecharcarrinho" onclick="fechaCarrinho()"></span>
+
+    
+    </p>
+    {% for item in itens_carrinho %}
+    <div class="boxcarrinho">
+        <p><b>{{ item.quantidade }}x {{ item.produto.nome }}</b></p>
+        
+
+        <a href="{% url 'produto:remover_item_carrinho' item.id categoria_slug %}"><img src="/media/static/lixeira.png"></a>
+        <div class="quantidade-form">
+            <form action="{% url 'produto:atualizar_quantidade' item.id %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="categoria_slug" value="{{ categoria_slug }}">
+                <button type="submit" name="increment" value="false" class="quantidade-btn">
+                    <img src="/media/static/remove.png" alt="Menos">
+                </button>
+                <span class="quantidade-itens">{{ item.quantidade }}</span> 
+                <button type="submit" name="increment" value="true" class="quantidade-btn">
+                    <img src="/media/static/add.png" alt="Mais">
+                </button>
+            </form>
+            <span>
+                <p class="font12 textright">Valor: {{ item.produto.valor }}</p>
+                <p class="font12 textright">Subtotal: {{ item.subtotal }}</p>
+            </span>
+        </div>
+        
+
+    </div>
+    {% endfor %}
+    <p class="total"><b>TOTAL {{ total }}</b></p>
+</div>
+  
+<script>
+    function abrirCarrinho() {
+      var carrinhoDiv = document.getElementById("carrinhocompras");
+      carrinhoDiv.style.display = "flex";
+
+      var conteudoDiv = document.querySelector(".conteudo");
+      conteudoDiv.style.display = "none";
+
+      var menuDiv = document.querySelector (".menu");
+      menuDiv.style.display = "none";
+    
+    }
+    function fechaCarrinho() {
+      var carrinhoDiv = document.getElementById("carrinhocompras");
+      carrinhoDiv.style.display = "none";
+    }
+  </script>
 {% endblock %}
+
